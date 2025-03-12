@@ -18,12 +18,7 @@ A aplicação será desenvolvida em **Python** com frontend em **React**, utiliz
 ### ✍️ CRUD de Rodovias
 - Cadastro de estradas, rodovias e pontes
 - Atualização e remoção de registros
-- Consulta de informações detalhadas
-
-### 🌆 Dashboard Interativo
-- Gráficos de tráfego médio diário
-- Visualização do estado de conservação das rodovias
-- Relatórios sobre últimos reparos
+- Visualização dos registros
 
 ### 🌟 Upload de Imagens
 - Envio de imagens das rodovias e pontes
