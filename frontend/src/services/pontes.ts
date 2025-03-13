@@ -1,7 +1,7 @@
 import { api } from "./api";
 
 export interface Ponte {
-    id?: number; // ID pode ser opcional na criação
+    id?: string; // ID pode ser opcional na criação
     nome: string;
     estado_conservacao: string;
     ultimo_reparo: string;
@@ -21,12 +21,12 @@ export const createPonte = async (ponte: Ponte): Promise<Ponte> => {
 };
 
 // Atualizar uma ponte existente
-export const updatePonte = async (id: number, ponte: Ponte): Promise<Ponte> => {
+export const updatePonte = async (id: string, ponte: Ponte): Promise<Ponte> => {
     const response = await api.put(`/pontes/${id}`, ponte);
     return response.data;
 };
 
 // Deletar uma ponte
-export const deletePonte = async (id: number): Promise<void> => {
+export const deletePonte = async (id: string): Promise<void> => {
     await api.delete(`/pontes/${id}`);
 };
