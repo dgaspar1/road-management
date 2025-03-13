@@ -1,22 +1,21 @@
 # 🌟 Gestão de Infraestrutura Rodoviária
 
 ## ✨ Visão Geral
-Este projeto tem como objetivo desenvolver um sistema para gestão de infraestruturas rodoviárias, permitindo o cadastro de estradas, rodovias e pontes, além do monitoramento do estado de conservação, último reparo realizado e tráfego médio diário.
+Este projeto tem como objetivo desenvolver um sistema para gestão de infraestruturas rodoviárias, permitindo o cadastro de rodovias e pontes, informando o estado de conservação, último reparo realizado e tráfego médio diário.
 
 A aplicação será desenvolvida em **Python** com frontend em **React**, utilizando **SQL Server** como banco de dados, e toda a solução rodará dentro de um **container Docker** no **Windows**.
 
 ## ⚡ Tecnologias Utilizadas
-- **Frontend:** React.js
+- **Frontend:** VITE + React + TS
 - **Backend:** FastAPI (Python)
-- **Banco de Dados:** SQL Server (Hospedado no Azure SQL Database Free Tier)
+- **Banco de Dados:** SQL Server
 - **Armazenamento de Imagens:** Azure Blob Storage (5GB gratuito)
 - **Deploy:** Azure Web Apps
 - **Containerização:** Docker
-- **Autenticação:** Azure Active Directory (Opcional)
 
 ## ⚖️ Funcionalidades
 ### ✍️ CRUD de Rodovias
-- Cadastro de estradas, rodovias e pontes
+- Cadastro de rodovias e pontes
 - Atualização e remoção de registros
 - Visualização dos registros
 
