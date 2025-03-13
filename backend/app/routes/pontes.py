@@ -1,12 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from backend.app.models import Pontes
-from backend.app.database import get_connection
+from app.models.models import Pontes
+from app.database.database import get_connection
 from pydantic import BaseModel
 
 router = APIRouter()
 
 @router.get("/pontes")
-def listar_pontes():
+async def listar_pontes():
     conn = get_connection()
     cursor = conn.cursor(as_dict=True)
     cursor.execute("SELECT * FROM Pontes")
@@ -15,7 +15,7 @@ def listar_pontes():
     return pontes
 
 @router.get("/pontes/{ponte_id}")
-def obter_ponte(ponte_id: int):
+async def obter_ponte(ponte_id: str):
     conn = get_connection()
     cursor = conn.cursor(as_dict=True)
     cursor.execute("SELECT * FROM Pontes WHERE id = %s", (ponte_id,))
@@ -26,7 +26,7 @@ def obter_ponte(ponte_id: int):
     return ponte
 
 @router.post("/pontes")
-def criar_ponte(ponte: Pontes):
+async def criar_ponte(ponte: Pontes):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -38,7 +38,7 @@ def criar_ponte(ponte: Pontes):
     return {"message": "Ponte criada com sucesso"}
 
 @router.put("/pontes/{ponte_id}")
-def atualizar_ponte(ponte_id: int, ponte: Pontes):
+async def atualizar_ponte(ponte_id: str, ponte: Pontes):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -50,7 +50,7 @@ def atualizar_ponte(ponte_id: int, ponte: Pontes):
     return {"message": "Ponte atualizada com sucesso"}
 
 @router.delete("/pontes/{ponte_id}")
-def deletar_ponte(ponte_id: int):
+async def deletar_ponte(ponte_id: str):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("DELETE FROM Pontes WHERE id = %s", (ponte_id,))

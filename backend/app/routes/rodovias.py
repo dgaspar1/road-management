@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from backend.app.models import Rodovia
-from backend.app.database import get_connection
+from app.models.models import Rodovia
+from app.database.database import get_connection
 from pydantic import BaseModel
 
 router = APIRouter()
@@ -15,7 +15,7 @@ def listar_rodovias():
     return rodovias
 
 @router.get("/rodovias/{rodovia_id}")
-def obter_rodovia(rodovia_id: int):
+def obter_rodovia(rodovia_id: str):
     conn = get_connection()
     cursor = conn.cursor(as_dict=True)
     cursor.execute("SELECT * FROM Rodovias WHERE id = %s", (rodovia_id,))
@@ -38,7 +38,7 @@ def criar_rodovia(rodovia: Rodovia):
     return {"message": "Rodovia criada com sucesso"}
 
 @router.put("/rodovias/{rodovia_id}")
-def atualizar_rodovia(rodovia_id: int, rodovia: Rodovia):
+def atualizar_rodovia(rodovia_id: str, rodovia: Rodovia):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -50,7 +50,7 @@ def atualizar_rodovia(rodovia_id: int, rodovia: Rodovia):
     return {"message": "Rodovia atualizada com sucesso"}
 
 @router.delete("/rodovias/{rodovia_id}")
-def deletar_rodovia(rodovia_id: int):
+def deletar_rodovia(rodovia_id: str):
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("DELETE FROM Rodovias WHERE id = %s", (rodovia_id,))
