@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from app.routes import rodovias, pontes
 from app.database.database import get_connection
@@ -14,10 +15,10 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permite requisições de qualquer origem (pode restringir para ["http://localhost:5173"])
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Permite todos os métodos HTTP (GET, POST, PUT, DELETE, etc.)
-    allow_headers=["*"],  # Permite todos os headers na requisição
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 conn = get_connection()
@@ -30,3 +31,9 @@ app.include_router(pontes.router, prefix="/api", tags=["pontes"])
 async def read_root():
     return {"Hello": "World"}
 
+apiHost = os.getenv("API_HOST")
+apiPort = os.getenv("API_PORT")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host=apiHost, port=int(apiPort))

@@ -1,11 +1,14 @@
 import pymssql
 import os
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_USER = os.getenv("DB_USER", "sa")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "YourStrong!Passw0rd")
-DB_NAME = os.getenv("DB_NAME", "gestao_infra")
+load_dotenv()
+
+DB_HOST = os.getenv("DB_HOST")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_NAME = os.getenv("DB_NAME")
 
 def get_connection():
     return pymssql.connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
